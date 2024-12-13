@@ -11,6 +11,6 @@
 4) next joke button to read the next joke and laugh.
 
 #### Author:
-<a href = 'github.com/vaibhav9526' target = '_blank'>
+<a href = '[github.com/vaibhav9526](https://github.com/Vaibhav9526)' target = '_blank'>
 Vaibhav Sharma
 </a>
