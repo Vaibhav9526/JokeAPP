@@ -1,27 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎭 JokesHub | Fun Unlimited</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Added Poppins for more fun feel -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="card">
-        <div class="jokesdisplay">
-            <h1 class="setup"></h1>
-            <h1 class="delivery"></h1>
-            <button class="nextmeme">next joke</button>
+    <!-- Custom styles -->
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      .joke-card {
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+      .bg-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-pattern">
+    <!-- Progress Bar -->
+    <div class="progress-bar fixed top-0 left-0 w-full h-1 bg-transparent z-[9999]">
+        <div class="progress hidden w-full h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-progress"></div>
+    </div>
+
+    <!-- preloader -->
+    <div class="preloader fixed inset-0 bg-[#000] z-[9999] flex items-center justify-center">
+        <div class="flex flex-col items-center gap-4">
+            <div class="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+            <div id="text" class="text-white text-xl font-bold"></div>
         </div>
     </div>
 
-    <footer>
-        <div id="footer-section" class="text-center">
-          <div class="container">
-              <a class="github" href="https://github.com/Vaibhav9526" target="_blank">@DEVELOPED BY VAIBHAV SHARMA</a>
-          </div> <!-- End container -->
-        </div> <!-- End footer-section  -->
-      </footer>
+    <!-- Loading preloader -->
+    <div class="Loading-preloader  backdrop-blur-[10px] hidden fixed w-full h-full flex items-center justify-center z-[9999]">
+        <div class="flex flex-col items-center gap-4 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div class="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+        </div>
+    </div>
+    <div
+      class="absolute inset-0 -z-10 size-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"
+    ></div>
+    <!-- Navbar -->
+    <nav class="border-b border-white/10 p-4 sticky top-0 z-50">
+      <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <div class="logo flex border border-white/50 p-1 rounded-lg">
+            <h1 class="text-xl font-bold text-white">Jokes</h1>
+            <h1
+              class="text-xl ml-1 font-bold bg-orange-500 text-black px-2 rounded-lg"
+            >
+              Hub
+            </h1>
+          </div>
+        </div>
+        <div class="flex space-x-3">
+          <button
+            class="EngJokeBtn px-3 py-1.5 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white rounded-full transition-all transform hover:scale-105 shadow-lg flex items-center space-x-2 text-sm"
+            id="englishBtn"
+          >
+            <i class="fas fa-font"></i>
+            <span>English</span>
+          </button>
+          <button
+            class="HindiJokeBtn px-3 py-1.5 bg-gradient-to-r from-orange-600 to-orange-800 hover:from-orange-700 hover:to-orange-900 text-white rounded-full transition-all transform hover:scale-105 shadow-lg flex items-center space-x-2 text-sm"
+            id="hindiBtn"
+          >
+            <i class="fas fa-globe-asia"></i>
+            <span>हिंदी</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8 sm:py-12 relative">
+      <div class="max-w-2xl mx-auto">
+        <div
+          class="joke-card bg-black/30 backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/30 transform transition-all"
+        >
+          <div class="jokesdisplay space-y-6">
+            <div class="flex items-center space-x-2 mb-6">
+              <i
+                class="fas fa-quote-left text-3xl sm:text-4xl text-yellow-300 opacity-75"
+              ></i>
+            </div>
+            <h2
+              class="setup text-xl sm:text-2xl font-medium text-gray-200 leading-relaxed"
+            ></h2>
+            <h2
+              class="delivery text-xl sm:text-2xl font-bold text-yellow-300 leading-relaxed"
+            ></h2>
+            <div class="flex items-center space-x-4 mt-8">
+              <button
+                class="nextmeme flex-1 px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-purple-700 to-purple-900 hover:from-purple-800 hover:to-purple-950 text-white rounded-2xl transition-all font-medium shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center space-x-2"
+              >
+                <i class="fas fa-random"></i>
+                <span>Next Joke</span>
+              </button>
+              <button
+                class="Copy-btn p-3 sm:p-4 bg-gray-800/50 hover:bg-green-700/50 text-white rounded-2xl transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                <i class="fas fa-copy"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Emoji decorations - Hidden on mobile -->
+        <div
+          class="hidden sm:block fixed top-20 right-10 text-6xl animate-bounce"
+        >
+          😂
+        </div>
+        <div
+          class="hidden sm:block fixed bottom-20 left-10 text-6xl animate-bounce delay-100"
+        >
+          🤣
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer
+      class="fixed bottom-0 w-full bg-black/30 backdrop-blur-md border-t border-white/10 py-4"
+    >
+      <div class="container mx-auto text-center px-4">
+        <a
+          href="https://github.com/Vaibhav9526"
+          target="_blank"
+          class="text-gray-300 hover:text-yellow-300 transition-colors flex items-center justify-center space-x-2"
+        >
+          <i class="fab fa-github"></i>
+          <span>Vaibhav Sharma</span>
+        </a>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
