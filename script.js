@@ -14,8 +14,7 @@ const API_KEY = '89fd50f915d44f03bfc3c2b5f4ab51c5';
 var ApiUrl = EnglishApiUrl;
 let isPlaying = false;
 
-// const text = "VAIBHAV SHARMA";
-const text = '';
+const text = "VAIBHAV SHARMA";
 let index = 0;
 let audio = null;
 
