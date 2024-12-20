@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/assests/favicon.png">
     <title>🎭 JokesHub | Fun Unlimited</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -37,12 +38,9 @@
           transform: translateY(0px);
         }
       }
-      .bg-pattern {
-        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      }
     </style>
   </head>
-  <body class="min-h-screen bg-pattern">
+  <body class="min-h-screen">
     <!-- Progress Bar -->
     <div
       class="progress-bar fixed top-0 left-0 w-full h-1 bg-transparent z-[9999]"
@@ -57,7 +55,7 @@
       class="preloader fixed inset-0 bg-[#000] z-[9999] flex items-center justify-center"
     >
       <div class="flex flex-col items-center gap-4">
-        <l-quantum size="60" speed="1.75" color="gray"></l-quantum>
+        <l-quantum size="60" speed="1.75" color="white"></l-quantum>
         <div id="text" class="text-white text-xl font-bold"></div>
       </div>
     </div>
@@ -69,17 +67,15 @@
       <div
         class="flex flex-col items-center gap-4 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       >
-        <l-grid size="80" speed="1" color="white"></l-grid>
+        <l-dot-pulse class="preloaderColor" size="50" speed="1"></l-dot-pulse>
       </div>
     </div>
-    <div
-      class="absolute inset-0 -z-10 size-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"
-    ></div>
+    <div class="MainScreen absolute inset-0 -z-10 size-full items-center px-5 py-24"></div>
     <!-- Navbar -->
-    <nav class="border-b border-white/10 p-4 sticky top-0 z-50">
+    <nav class="Navbar border-b border-white/10 p-4 sticky top-0 z-50 bg-black/30 backdrop-blur-md shadow-lg">
       <div class="container mx-auto flex justify-between items-center">
         <div class="flex items-center space-x-2">
-          <div class="logo flex border border-white/50 p-1 rounded-lg">
+          <div class="logo flex border border-white/50 p-1 rounded-lg bg-black">
             <h1 class="text-xl font-bold text-white">Jokes</h1>
             <h1
               class="text-xl ml-1 font-bold bg-orange-500 text-black px-2 rounded-lg"
@@ -89,18 +85,15 @@
           </div>
         </div>
         <div class="navbtn flex space-x-3">
-          <button
-            class="EngJokeBtn px-3 py-1.5 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white rounded-full transition-all transform hover:scale-105 shadow-lg flex items-center space-x-2 text-sm"
-            id="englishBtn"
-          >
+          <!-- English Button -->
+          <button class="EngJokeBtn group h-8 select-none rounded-lg bg-zinc-700 px-3 text-sm leading-8 text-zinc-50 shadow-[0_-1px_0_1px_#18181b_inset,0_0_0_1px_#3f3f46_inset,0_0.5px_0_1.5px_#52525b_inset] hover:bg-zinc-800 active:bg-zinc-900 active:shadow-[-1px_0px_1px_0px_rgba(0,0,0,.2)_inset,1px_0px_1px_0px_rgba(0,0,0,.2)_inset,0px_0.125rem_0px_0px_rgba(0,0,0,.6)_inset] flex items-center space-x-2">
             <i class="fas fa-font"></i>
             <span>English</span>
           </button>
-          <button
-            class="HindiJokeBtn px-3 py-1.5 bg-gradient-to-r from-orange-600 to-orange-800 hover:from-orange-700 hover:to-orange-900 text-white rounded-full transition-all transform hover:scale-105 shadow-lg flex items-center space-x-2 text-sm"
-            id="hindiBtn"
-          >
-            <i class="fas fa-globe-asia"></i>
+        
+          <!-- Hindi Button -->
+          <button class="HindiJokeBtn group h-8 select-none rounded-lg bg-zinc-700 px-3 text-sm leading-8 text-zinc-50 shadow-[0_-1px_0_1px_#18181b_inset,0_0_0_1px_#3f3f46_inset,0_0.5px_0_1.5px_#52525b_inset] hover:bg-zinc-800 active:bg-zinc-900 active:shadow-[-1px_0px_1px_0px_rgba(0,0,0,.2)_inset,1px_0px_1px_0px_rgba(0,0,0,.2)_inset,0px_0.125rem_0px_0px_rgba(0,0,0,.6)_inset] flex items-center space-x-2">
+            <i class="fas fa-om"></i>
             <span>हिंदी</span>
           </button>
         </div>
@@ -113,6 +106,74 @@
         <div
           class="joke-card bg-black/30 backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/30 transform transition-all"
         >
+                <!-- Bright mode and dark mode button -->
+                <label class="switch">
+                  <input id="input" type="checkbox" checked="darkTheme" onclick="Mode()"/>
+                  <div class="slider round">
+                    <div class="sun-moon">
+                      <svg id="moon-dot-1" class="moon-dot" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="50"></circle>
+                      </svg>
+                      <svg id="moon-dot-2" class="moon-dot" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="50"></circle>
+                      </svg>
+                      <svg id="moon-dot-3" class="moon-dot" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="50"></circle>
+                      </svg>
+                      <svg id="light-ray-1" class="light-ray" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="50"></circle>
+                      </svg>
+                      <svg id="light-ray-2" class="light-ray" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="50"></circle>
+                      </svg>
+                      <svg id="light-ray-3" class="light-ray" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="50"></circle>
+                      </svg>
+                
+                      <svg id="cloud-1" class="cloud-dark" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="50"></circle>
+                      </svg>
+                      <svg id="cloud-2" class="cloud-dark" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="50"></circle>
+                      </svg>
+                      <svg id="cloud-3" class="cloud-dark" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="50"></circle>
+                      </svg>
+                      <svg id="cloud-4" class="cloud-light" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="50"></circle>
+                      </svg>
+                      <svg id="cloud-5" class="cloud-light" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="50"></circle>
+                      </svg>
+                      <svg id="cloud-6" class="cloud-light" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="50"></circle>
+                      </svg>
+                    </div>
+                    <div class="stars">
+                      <svg id="star-1" class="star" viewBox="0 0 20 20">
+                        <path
+                          d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"
+                        ></path>
+                      </svg>
+                      <svg id="star-2" class="star" viewBox="0 0 20 20">
+                        <path
+                          d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"
+                        ></path>
+                      </svg>
+                      <svg id="star-3" class="star" viewBox="0 0 20 20">
+                        <path
+                          d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"
+                        ></path>
+                      </svg>
+                      <svg id="star-4" class="star" viewBox="0 0 20 20">
+                        <path
+                          d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                </label>
+                
           <div class="jokesdisplay space-y-6">
             <div class="flex items-center space-x-2 mb-6">
               <i
@@ -151,20 +212,10 @@
             </div>
           </div>
         </div>
-
-        <!-- Emoji decorations - Hidden on mobile -->
-        <div
-          class="hidden sm:block fixed top-20 right-10 text-6xl animate-bounce"
-        >
-          😂
-        </div>
-        <div
-          class="hidden sm:block fixed bottom-20 left-10 text-6xl animate-bounce delay-100"
-        >
-          🤣
-        </div>
       </div>
     </div>
+
+
 
     <!-- Footer -->
     <footer
@@ -184,7 +235,7 @@
 
     <script
       type="module"
-      src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/grid.js"
+      src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/dotPulse.js"
     ></script>
     <!-- Scripts -->
     <script src="script.js"></script>

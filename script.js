@@ -10,6 +10,7 @@ const progressBar = document.querySelector(".progress");
 const Loadingpreloader = document.querySelector(".Loading-preloader");
 const ListenBtn = document.querySelector(".Listen-btn");
 const API_KEY = '89fd50f915d44f03bfc3c2b5f4ab51c5';
+const Theme = document.querySelector(".MainScreen")
 var ApiUrl = EnglishApiUrl;
 let isPlaying = false;
 
@@ -219,5 +220,50 @@ Copybtn.addEventListener("click", () => {
       console.error("Failed to copy: ", err);
     }
     document.body.removeChild(textarea);
+  }
+});
+
+//Mode (bright or dark)
+function Mode() {
+  const ThemeBtn = document.querySelector(".switch");
+  
+  // Check if the checkbox is checked
+  const checkbox = document.getElementById('input');
+  const isLightMode = checkbox.checked;
+  
+  if (isLightMode) {
+      // Light mode
+      Theme.style.background = 'radial-gradient(125% 125% at 50% 10%, #fff 40%, #63e 100%)';
+      document.querySelector('.joke-card').style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+      setup.style.color = '#1a202c';  // dark gray
+      delivery.style.color = '#1a202c';
+      ThemeBtn.title = 'Switch to Dark Mode';
+      document.querySelector('.preloaderColor').color = 'black';
+    } else {
+      // Dark mode
+      Theme.style.background = 'radial-gradient(125% 125% at 50% 10%, #000 40%, #63e 100%)';
+      document.querySelector('.joke-card').style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+      setup.style.color = '#e2e8f0';  // light gray
+      delivery.style.color = '#fcd34d'; // yellow
+      ThemeBtn.title = 'Switch to Bright Mode';
+      document.querySelector('.preloaderColor').color = 'white';
+    }
+
+  // Log the current state for debugging
+  console.log('Theme changed:', {
+      isLightMode: isLightMode,
+      background: Theme.style.background
+  });
+}
+
+// Initialize theme on page load
+document.addEventListener('DOMContentLoaded', () => {
+  const checkbox = document.getElementById('input');
+  if (checkbox) {
+      // Set initial state
+      Mode();
+      
+      // Add change event listener
+      checkbox.addEventListener('change', Mode);
   }
 });
