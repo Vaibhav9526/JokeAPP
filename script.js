@@ -1,6 +1,5 @@
 const EnglishApiUrl = "https://v2.jokeapi.dev/joke/Any";
-const HindiApiUrl =
-  "https://hindi-jokes-api.onrender.com/jokes/?api_key=ab2c6905fdabed98a0b0da63c0c9";
+const HindiApiUrl = "https://hindi-jokes-api.onrender.com/jokes/?api_key=ab2c6905fdabed98a0b0da63c0c9";
 const EnglishBtn = document.querySelector(".EngJokeBtn");
 const HindiBtn = document.querySelector(".HindiJokeBtn");
 const nextbtn = document.querySelector(".nextmeme");

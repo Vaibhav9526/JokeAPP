@@ -16,8 +16,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="style.css">
     <!-- Custom styles -->
+    <link rel="stylesheet" href="style.css" />
+
     <style>
       body {
         font-family: "Poppins", sans-serif;
@@ -43,23 +44,33 @@
   </head>
   <body class="min-h-screen bg-pattern">
     <!-- Progress Bar -->
-    <div class="progress-bar fixed top-0 left-0 w-full h-1 bg-transparent z-[9999]">
-        <div class="progress hidden w-full h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-progress"></div>
+    <div
+      class="progress-bar fixed top-0 left-0 w-full h-1 bg-transparent z-[9999]"
+    >
+      <div
+        class="progress hidden w-full h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-progress"
+      ></div>
     </div>
 
     <!-- preloader -->
-    <div class="preloader fixed inset-0 bg-[#000] z-[9999] flex items-center justify-center">
-        <div class="flex flex-col items-center gap-4">
-            <div class="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-            <div id="text" class="text-white text-xl font-bold"></div>
-        </div>
+    <div
+      class="preloader fixed inset-0 bg-[#000] z-[9999] flex items-center justify-center"
+    >
+      <div class="flex flex-col items-center gap-4">
+        <l-quantum size="60" speed="1.75" color="gray"></l-quantum>
+        <div id="text" class="text-white text-xl font-bold"></div>
+      </div>
     </div>
 
     <!-- Loading preloader -->
-    <div class="Loading-preloader  backdrop-blur-[10px] hidden fixed w-full h-full flex items-center justify-center z-[9999]">
-        <div class="flex flex-col items-center gap-4 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div class="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-        </div>
+    <div
+      class="Loading-preloader backdrop-blur-[10px] hidden fixed w-full h-full flex items-center justify-center z-[9999]"
+    >
+      <div
+        class="flex flex-col items-center gap-4 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+      >
+        <l-grid size="80" speed="1" color="white"></l-grid>
+      </div>
     </div>
     <div
       class="absolute inset-0 -z-10 size-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"
@@ -77,7 +88,7 @@
             </h1>
           </div>
         </div>
-        <div class="flex space-x-3">
+        <div class="navbtn flex space-x-3">
           <button
             class="EngJokeBtn px-3 py-1.5 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white rounded-full transition-all transform hover:scale-105 shadow-lg flex items-center space-x-2 text-sm"
             id="englishBtn"
@@ -115,12 +126,18 @@
               class="delivery text-xl sm:text-2xl font-bold text-yellow-300 leading-relaxed"
             ></h2>
             <div class="flex items-center space-x-4 mt-8">
-              <button
-                class="nextmeme flex-1 px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-purple-700 to-purple-900 hover:from-purple-800 hover:to-purple-950 text-white rounded-2xl transition-all font-medium shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center space-x-2"
-              >
-                <i class="fas fa-random"></i>
-                <span>Next Joke</span>
+              <button type="button" class="nextmeme flex-1">
+                <strong>NEXT</strong>
+                <div id="container-stars">
+                  <div id="stars"></div>
+                </div>
+
+                <div id="glow">
+                  <div class="circle"></div>
+                  <div class="circle"></div>
+                </div>
               </button>
+
               <button
                 class="Copy-btn p-3 sm:p-4 bg-gray-800/50 hover:bg-green-700/50 text-white rounded-2xl transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
               >
@@ -165,7 +182,16 @@
       </div>
     </footer>
 
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/grid.js"
+    ></script>
     <!-- Scripts -->
     <script src="script.js"></script>
+    <!-- uiball loaders -->
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/quantum.js"
+    ></script>
   </body>
 </html>
